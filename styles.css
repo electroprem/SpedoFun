@@ -21,3 +21,15 @@ button {
 #speedometer {
     margin-top: 2rem;
 }
+
+#map-link {
+    margin-top: 1rem;
+}
+
+#find-me {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
