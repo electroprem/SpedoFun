@@ -1,5 +1,8 @@
 const carSounds = document.getElementById('car-sounds');
 const speedometer = document.getElementById('speedometer');
+const status = document.querySelector("#status"); // Not used in this version
+const mapLink = document.querySelector("#map-link");
+const locationElement = document.getElementById('location');
 
 // Function to play sound based on button click (replace with actual audio files)
 function playCarSound(sound) {
@@ -14,13 +17,31 @@ carSounds.querySelectorAll('button').forEach(button => {
   });
 });
 
-// Get speed using Geolocation API (example - replace with actual implementation)
-function getSpeed() {
+// Get speed, latitude, and longitude using Geolocation API
+function getSpeedAndLocation() {
   navigator.geolocation.getCurrentPosition(position => {
     const speed = position.coords.speed * 3.6; // Convert m/s to km/h
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+
     speedometer.textContent = `Speed: ${Math.round(speed)} km/h`;
+    locationElement.textContent = `Latitude: ${latitude.toFixed(2)} °, Longitude: ${longitude.toFixed(2)} °`;
+    mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+    mapLink.textContent = "View on OpenStreetMap";
+  }, error => {
+    console.error("Error retrieving location or speed:", error);
+    // Handle errors gracefully (e.g. display an error message)
   });
 }
 
-// Call getSpeed function (can be called repeatedly for updates)
-getSpeed();
+// Call getSpeedAndLocation function repeatedly for updates
+setInterval(getSpeedAndLocation, 1000); // Update every second
+
+// Function to geolocate on button click (optional)
+function geoFindMe() {
+  // Existing logic from previous code snippet (commented out)
+  // ...
+}
+
+// Event listener for geolocation button (optional)
+// document.querySelector("#find-me").addEventListener("click", geoFindMe);
