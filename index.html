@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Speedometer & Sounds</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Car Speedometer & Sounds</h1>
-    <p>Experience realistic car sounds and track your speed!</p>
+    <p>Experience realistic car sounds and track your speed and location!</p>
     <div id="car-sounds">
         <button>Engine Start</button>
         <button>Idling</button>
@@ -18,7 +18,10 @@
     </div>
     <div id="speedometer">
         <h2>Speed: 0 km/h</h2>
+        <p id="location"></p>
     </div>
+    <div id="map-link"></div>
+    <button id="find-me">Locate Me (Optional)</button>
     <script src="script.js"></script>
 </body>
 </html>
