@@ -1,0 +1,23 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+    margin: 2rem;
+}
+
+#car-sounds {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+}
+
+button {
+    padding: 1rem;
+    margin: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#speedometer {
+    margin-top: 2rem;
+}
