@@ -32,4 +32,6 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    background-color: #007bff; /* Example blue color */
+    color: white;
 }
