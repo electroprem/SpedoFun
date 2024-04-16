@@ -6,7 +6,7 @@ const locationElement = document.getElementById('location');
 
 // Function to play sound based on button click (replace with actual audio files)
 function playCarSound(sound) {
-  const audio = new Audio(`sounds/${sound}.mp3`);  // Replace with your file path
+  const audio = new Audio(`sounds/sound.mp3`);  // Replace with your file path
   audio.play();
 }
 
