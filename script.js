@@ -38,10 +38,20 @@ function getSpeedAndLocation() {
 setInterval(getSpeedAndLocation, 1000); // Update every second
 
 // Function to geolocate on button click (optional)
+// Function to show user's location on button click
 function geoFindMe() {
-  // Existing logic from previous code snippet (commented out)
-  // ...
+  navigator.geolocation.getCurrentPosition(position => {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+
+    const locationElement = document.getElementById('location');
+    locationElement.textContent = `Latitude: ${latitude.toFixed(2)} °, Longitude: ${longitude.toFixed(2)} °`;
+  }, error => {
+    console.error("Error retrieving location:", error);
+    // Handle errors gracefully (e.g. display an error message)
+  });
 }
 
-// Event listener for geolocation button (optional)
-// document.querySelector("#find-me").addEventListener("click", geoFindMe);
+// Event listener for "find-me" button (uncomment to enable)
+document.querySelector("#find-me").addEventListener("click", geoFindMe);
+
