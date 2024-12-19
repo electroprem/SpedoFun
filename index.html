@@ -3,27 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Speedometer & Sounds</title>
-    <link rel="stylesheet" href="style.css">
+    <title>BLE Scanner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+    </style>
 </head>
 <body>
-    <h1>Car Speedometer & Sounds</h1>
-    <p>Experience realistic car sounds and track your speed and location!</p>
-    <br>
-    <p>Update : 16 APRIL 2024 </p>
-    <div id="car-sounds">
-        <button>Engine Start</button>
-        <button>Idling</button>
-        <button>Low Speed</button>
-        <button>Medium Speed</button>
-        <button>High Speed</button>
-    </div>
-    <div id="speedometer">
-        <h2>Speed: 0 km/h</h2>
-        <p id="location"></p>
-    </div>
-    <div id="map-link"></div>
-    <button id="find-me">Show My Location</button>
-    <script src="script.js"></script>
+    <h1>BLE Device Scanner</h1>
+    <p>Click the button below to scan for BLE devices.</p>
+    <button id="scanButton">Scan for Devices</button>
+    <ul id="deviceList"></ul>
+
+    <script>
+        document.getElementById('scanButton').addEventListener('click', async () => {
+            const deviceList = document.getElementById('deviceList');
+            deviceList.innerHTML = '';
+
+            try {
+                const device = await navigator.bluetooth.requestDevice({
+                    acceptAllDevices: true,
+                    optionalServices: []
+                });
+
+                const listItem = document.createElement('li');
+                listItem.textContent = `Name: ${device.name || 'Unknown'}, ID: ${device.id}`;
+                deviceList.appendChild(listItem);
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to scan for devices. Please make sure Bluetooth is enabled and the browser supports Web Bluetooth API.');
+            }
+        });
+    </script>
 </body>
 </html>
